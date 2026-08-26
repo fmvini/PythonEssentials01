@@ -7,26 +7,17 @@ def is_year_leap(year):
         return False
 
 def days_in_month(year, month):
-    if is_year_leap(year):
-       match month:
-           case 2: return 29
-    match month:
-        case 1: return 31
-        case 2: return 28
-        case 3: return 31
-        case 4: return 30
-        case 5: return 31
-        case 6: return 30
-        case 7: return 31
-        case 8: return 31
-        case 9: return 30
-        case 10: return 31
-        case 11: return 30
-        case 12: return 31
+    days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+    result = days[month - 1]
+    if month == 2 and is_year_leap(year):
+            return 29
+    return result
 
 def day_of_year(year, month, day):
- #
- # Escreva seu código aqui.
- #
+    soma = 0
+    for i in range(1, month):
+        soma += days_in_month(year, i)
+    soma += day
+    return soma
 
 print(day_of_year(2000, 12, 31))
